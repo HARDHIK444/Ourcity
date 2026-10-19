@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OurCity | Create post</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/create.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap wrap--wide">
+    <a class="logo" href="index.html" aria-label="Our City home">
+      <svg width="32" height="38" viewBox="0 0 120 130" aria-hidden="true"><path d="M60 8 C36 8 22 26 22 46 C22 74 60 118 60 118 C60 118 98 74 98 46 C98 26 84 8 60 8 Z" fill="#FF6A00" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><circle cx="60" cy="46" r="15" fill="#111" stroke="#fff" stroke-width="6"/></svg>
+      <span>Our <em>City</em></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="link" href="index.html">Home</a>
+      <a class="link" href="index.html#cities">Explore your city</a>
+      <a class="link" href="feed.html">Feed</a>
+      <div class="auth" id="authBox">
+        <a href="signup.html">Sign up</a>
+        <a href="login.html" class="fill">Login</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap cr" id="cr">
+
+  <!-- shown if the visitor is not logged in -->
+  <div class="card cr__card cr__center" id="crGate" hidden>
+    <h1>Log in to post</h1>
+    <p>Anyone can read the feed. Posting needs an account.</p>
+    <a class="btn btn--orange" href="login.html">Login</a>
+    <a class="btn btn--line" href="signup.html">Sign up</a>
+  </div>
+
+  <!-- STEP 1: camera / gallery -->
+  <section class="card cr__card cr__center" id="s1" hidden>
+    <div class="cr__bigcam" aria-hidden="true">
+      <svg width="56" height="56" viewBox="0 0 24 24"><path d="M4 8 H8 L10 5 H14 L16 8 H20 V19 H4 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+    </div>
+    <h1>Create a post</h1>
+    <p>Take a photo or choose photos and videos of the problem.</p>
+    <div class="cr__btns">
+      <button type="button" class="btn btn--orange" id="camBtn">Take a photo</button>
+      <label class="btn btn--line" style="cursor:pointer">Choose from gallery
+        <input type="file" id="gallery" accept="image/*,video/*" multiple class="sr-only">
+      </label>
+    </div>
+    <input type="file" id="phoneCam" accept="image/*" capture="environment" class="sr-only">
+    <small class="cr__hint">Up to 6 items. Videos up to 40 MB each.</small>
+    <div class="form-msg" id="msg1" role="alert"></div>
+  </section>
+
+  <!-- live camera -->
+  <section class="card cr__card" id="camPanel" hidden>
+    <div class="cam"><video id="camVideo" autoplay playsinline muted></video></div>
+    <div class="cam__bar">
+      <button type="button" class="btn btn--line" id="camClose">Cancel</button>
+      <button type="button" class="shutter" id="shutter" aria-label="Take photo"></button>
+      <span style="width:88px"></span>
+    </div>
+  </section>
+
+  <!-- STEP 2: edit -->
+  <section class="card cr__card" id="s2" hidden>
+    <div class="cr__top"><button type="button" class="cr__back" id="back2">&larr; Back</button><b>Edit</b><button type="button" class="btn btn--orange cr__next" id="next2">Next</button></div>
+
+    <div class="stagewrap"><div class="stage" id="stage"></div></div>
+    <div class="strip" id="strip"></div>
+
+    <div class="ctabs" role="tablist">
+      <button type="button" class="ctab is-on" data-tab="filters">Filters</button>
+      <button type="button" class="ctab" data-tab="text">Text</button>
+      <button type="button" class="ctab" data-tab="music">Music</button>
+    </div>
+
+    <div class="cpanel" id="p-filters"></div>
+
+    <div class="cpanel" id="p-text" hidden>
+      <input type="text" id="textIn" maxlength="60" placeholder="Type something to write on the photo">
+      <div class="swatches" id="swatches" aria-label="Text colour"></div>
+      <div class="rowopts">
+        <label>Size <input type="range" id="textSize" min="4" max="16" value="8"></label>
+        <label class="chk"><input type="checkbox" id="textHl"> Highlight</label>
+        <button type="button" class="linklike" id="textClear">Remove text</button>
+      </div>
+      <small class="cr__hint">Drag the text on the photo to move it.</small>
+    </div>
+
+    <div class="cpanel" id="p-music" hidden>
+      <label class="btn btn--line" style="cursor:pointer;display:inline-block">Choose music or audio
+        <input type="file" id="audio" accept="audio/*" class="sr-only">
+      </label>
+      <div class="audiobox" id="audioBox" hidden>
+        <div class="audiobox__top"><b id="audioName"></b><button type="button" id="audioRemove" class="linklike">Remove</button></div>
+        <audio id="audioPlayer" controls></audio>
+        <label class="own"><input type="checkbox" id="audioOwn"> I made this audio or I have the right to use it.</label>
+      </div>
+      <small class="cr__hint">The music plays beside your post. Mixing it into the video file itself comes in a later step.</small>
+    </div>
+    <div class="form-msg" id="msg2" role="alert"></div>
+  </section>
+
+  <!-- STEP 3: share -->
+  <section class="card cr__card" id="s3" hidden>
+    <div class="cr__top"><button type="button" class="cr__back" id="back3">&larr; Back</button><b>New post</b><span style="width:70px"></span></div>
+    <div class="mini" id="miniPrev"></div>
+    <label class="sr-only" for="text">Describe the problem</label>
+    <textarea id="text" maxlength="1000" placeholder="Describe the problem. What do you see? Not who caused it."></textarea>
+    <div class="cr__count" id="count">0 / 1000</div>
+
+    <div class="grid2">
+      <label>Category <select id="cat"></select></label>
+      <label class="loc">Location
+        <span class="locwrap">
+          <input type="text" id="place" maxlength="120" autocomplete="off" placeholder="Type a place, street or landmark">
+          <button type="button" class="gps" id="gpsBtn" title="Use my current location" aria-label="Use my current location">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 2 V6 M12 18 V22 M2 12 H6 M18 12 H22" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          </button>
+          <ul class="suggest" id="suggest" hidden></ul>
+        </span>
+        <small id="placeNote">Pick a suggestion so people can open it on a map.</small>
+      </label>
+    </div>
+    <div class="cr__promise">We send it to the right department. You never need to call anyone.</div>
+    <div class="form-msg" id="msg3" role="alert"></div>
+    <button type="button" class="btn btn--orange cr__share" id="shareBtn">Share</button>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="logo">Our <em>City</em></div>
+    <p>An independent community platform. Not an official government site.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+<script>
+/* shows any script error on the page, so problems are easy to spot */
+window.addEventListener('error', function (e) {
+  var d = document.getElementById('jsErr');
+  if (!d) { d = document.createElement('div'); d.id = 'jsErr'; d.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:99;background:#b00020;color:#fff;padding:10px 16px;font:600 14px monospace'; document.body.appendChild(d); }
+  d.textContent = 'Page error: ' + e.message + ' (' + String(e.filename).split('/').pop() + ':' + e.lineno + ')';
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/create.js"></script>
+</body>
+</html>

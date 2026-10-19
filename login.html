@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OurCity | Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap wrap--wide">
+    <a class="logo" href="index.html" aria-label="Our City home">
+      <svg width="32" height="38" viewBox="0 0 120 130" aria-hidden="true"><path d="M60 8 C36 8 22 26 22 46 C22 74 60 118 60 118 C60 118 98 74 98 46 C98 26 84 8 60 8 Z" fill="#FF6A00" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><circle cx="60" cy="46" r="15" fill="#111" stroke="#fff" stroke-width="6"/></svg>
+      <span>Our <em>City</em></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="link " href="index.html">Home</a>
+      <a class="link" href="index.html#cities">Explore your city</a>
+      <a class="link" href="feed.html">Feed</a>
+      <div class="auth" id="authBox">
+        <a href="signup.html">Sign up</a>
+        <a href="login.html" class="fill">Login</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="auth-page">
+  <div class="auth-card">
+    <h1>Welcome <span class="hl">back</span></h1>
+    <p class="sub">Log in to post a problem and track your reports.</p>
+    <form id="loginForm" novalidate>
+      <label>Email<input type="email" name="email" autocomplete="email" placeholder="you@example.com"></label>
+      <label>Password<input type="password" name="password" autocomplete="current-password"></label>
+      <div class="auth-msg" id="authMsg" role="alert"></div>
+      <button class="btn btn--orange" type="submit">Login</button>
+    </form>
+    <p class="auth-switch">New here? <a href="signup.html">Create an account</a></p>
+  </div>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

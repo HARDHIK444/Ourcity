@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OurCity | Admin dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap wrap--wide">
+    <a class="logo" href="index.html" aria-label="Our City home">
+      <svg width="32" height="38" viewBox="0 0 120 130" aria-hidden="true"><path d="M60 8 C36 8 22 26 22 46 C22 74 60 118 60 118 C60 118 98 74 98 46 C98 26 84 8 60 8 Z" fill="#FF6A00" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><circle cx="60" cy="46" r="15" fill="#111" stroke="#fff" stroke-width="6"/></svg>
+      <span>Our <em>City</em></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="link" href="index.html">Home</a>
+      <a class="link" href="index.html#cities">Explore your city</a>
+      <a class="link" href="feed.html">Feed</a>
+      <div class="auth" id="authBox">
+        <a href="signup.html">Sign up</a>
+        <a href="login.html" class="fill">Login</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap wrap--wide ad" id="admin">
+  <div class="card loading">Checking your access...</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="logo">Our <em>City</em></div>
+    <p>An independent community platform. Not an official government site.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+<script>
+/* shows any script error on the page, so problems are easy to spot */
+window.addEventListener('error', function (e) {
+  var d = document.getElementById('jsErr');
+  if (!d) { d = document.createElement('div'); d.id = 'jsErr'; d.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:99;background:#b00020;color:#fff;padding:10px 16px;font:600 14px monospace'; document.body.appendChild(d); }
+  d.textContent = 'Page error: ' + e.message + ' (' + String(e.filename).split('/').pop() + ':' + e.lineno + ')';
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

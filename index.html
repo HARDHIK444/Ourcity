@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OurCity | See it. Snap it. Fix it.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap wrap--wide">
+    <a class="logo" href="index.html" aria-label="Our City home">
+      <svg width="32" height="38" viewBox="0 0 120 130" aria-hidden="true"><path d="M60 8 C36 8 22 26 22 46 C22 74 60 118 60 118 C60 118 98 74 98 46 C98 26 84 8 60 8 Z" fill="#FF6A00" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><circle cx="60" cy="46" r="15" fill="#111" stroke="#fff" stroke-width="6"/></svg>
+      <span>Our <em>City</em></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="link is-active" href="index.html">Home</a>
+      <a class="link" href="index.html#cities">Explore your city</a>
+      <a class="link" href="feed.html">Feed</a>
+      <div class="auth" id="authBox">
+        <a href="signup.html">Sign up</a>
+        <a href="login.html" class="fill">Login</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ===== 1. HERO ===== -->
+<section class="hero">
+  <svg class="hero__deco" viewBox="0 0 1360 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <circle cx="1230" cy="90" r="190" fill="#FF6A00" opacity="0.14"/>
+    <circle cx="1230" cy="90" r="120" fill="none" stroke="#FF6A00" stroke-width="3" opacity="0.5"/>
+    <circle cx="60" cy="640" r="150" fill="#111" opacity="0.06"/>
+    <g fill="#FF6A00" opacity="0.55"><circle cx="600" cy="60" r="4"/><circle cx="622" cy="60" r="4"/><circle cx="644" cy="60" r="4"/><circle cx="600" cy="82" r="4"/><circle cx="622" cy="82" r="4"/><circle cx="644" cy="82" r="4"/><circle cx="600" cy="104" r="4"/><circle cx="622" cy="104" r="4"/><circle cx="644" cy="104" r="4"/></g>
+    <path d="M20 470 l16 -16 l16 16 l16 -16 l16 16 l16 -16 l16 16" fill="none" stroke="#111" stroke-width="4" opacity="0.18"/>
+  </svg>
+  <div class="wrap">
+    <div class="hero__text">
+      <span class="pill">Our City. Our Responsibility.</span>
+      <h1>See it.<br>Snap it.<br><span class="hl">Fix it.</span></h1>
+      <p class="lead">Post a problem from a pothole to an overflowing garbage pile. Neighbours see it and follow it, and OurCity sends it to the <b>team responsible</b> until it is <b>fixed</b>.</p>
+      <form class="search" action="feed.html" role="search">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22 C12 22 4 14 4 9 A8 8 0 0 1 20 9 C20 14 12 22 12 22 Z" fill="none" stroke="#FF6A00" stroke-width="2.5"/><circle cx="12" cy="9" r="2.5" fill="#FF6A00"/></svg>
+        <label class="sr-only" for="pin">Your ward or pincode</label>
+        <input id="pin" type="text" placeholder="Enter your ward or pincode">
+        <button class="btn btn--orange" type="submit">Show my area</button>
+      </form>
+      <div class="hero__note">Or <a href="feed.html">browse the community feed</a> without setting a location.</div>
+    </div>
+
+    <div class="demo" aria-label="Example report">
+      <div class="demo__head">
+        <div class="avatar">RS</div>
+        <div style="flex:1;min-width:0"><b style="font-size:15px">Riya S.</b><div style="font-size:12px;color:#555">Ward 12 · 2h ago</div></div>
+        <span class="chip" style="background:#FF6A00;color:#111">Potholes</span>
+      </div>
+      <svg class="demo__img" viewBox="0 0 300 170" role="img" aria-label="Illustration of a pothole with a traffic cone">
+        <rect width="300" height="170" fill="#E6E6E1"/><rect y="70" width="300" height="18" fill="#CFCFCA"/><rect y="88" width="300" height="82" fill="#333"/>
+        <path d="M0 124 H40 M80 124 H120 M160 124 H200 M240 124 H300" stroke="#fff" stroke-width="5"/>
+        <ellipse cx="150" cy="140" rx="68" ry="20" fill="#888"/><ellipse cx="150" cy="143" rx="57" ry="14" fill="#111"/>
+        <polygon points="236,138 250,100 264,138" fill="#FF6A00" stroke="#111" stroke-width="3" stroke-linejoin="round"/><rect x="228" y="138" width="44" height="9" rx="2" fill="#111"/>
+      </svg>
+      <p style="margin:12px 0 0;font-size:14px;line-height:1.5;font-weight:500">Big pothole near the bus stop. Two-wheelers swerving every morning.</p>
+      <div class="demo__info">
+        <div><b>Handled by</b>Roads Dept · Zone 3</div>
+        <div><b>Status</b>In progress · updated 2h ago</div>
+      </div>
+      <div class="mini-steps">
+        <div><i></i>Reported</div><div><i></i>Under review</div><div><i></i>In progress</div><div class="todo"><i></i>Resolved</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><span class="ticker__track">SEE IT &nbsp;&#9679;&nbsp; SNAP IT &nbsp;&#9679;&nbsp; FIX IT &nbsp;&#9679;&nbsp; OUR CITY &nbsp;&#9679;&nbsp; OUR RESPONSIBILITY &nbsp;&#9679;&nbsp; SEE IT &nbsp;&#9679;&nbsp; SNAP IT &nbsp;&#9679;&nbsp; FIX IT &nbsp;&#9679;&nbsp; OUR CITY &nbsp;&#9679;&nbsp; OUR RESPONSIBILITY &nbsp;&#9679;&nbsp;</span></div>
+
+<!-- ===== 2. EXPLORE YOUR CITY ===== -->
+<section class="section" id="cities">
+  <div class="wrap">
+    <span class="eyebrow">Explore your city or state</span>
+    <h2>Pick your city. <span class="hl">See what citizens are reporting.</span></h2>
+    <p class="sub">Every city has its pride, and its problems. Open yours to see the civic issues reported, the authority responsible, and how many have been resolved.</p>
+
+    <div class="toolbar">
+      <div class="tabs" role="tablist">
+        <button class="tab is-on" role="tab" data-mode="cities">Cities</button>
+        <button class="tab" role="tab" data-mode="states">States</button>
+      </div>
+      <label class="field">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16.5 16.5 L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <span class="sr-only">Search a city or state</span>
+        <input id="cityQ" type="search" placeholder="Search a city or state">
+      </label>
+      <span class="chip chip--sample">Sample numbers for design</span>
+    </div>
+
+    <div class="cities" id="cityGrid"></div>
+  </div>
+</section>
+
+<!-- ===== 3. LATEST REPORTS ===== -->
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow">Live from the community</span>
+    <h2>Latest <span class="hl">reports</span> near you.</h2>
+    <div class="reports" id="latest"><p class="empty">Loading the latest reports...</p></div>
+    <a class="more" href="feed.html">Open the community feed <span style="color:#FF6A00;display:flex"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M9 7 H17 V15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+  </div>
+</section>
+
+<!-- ===== 4. WHY WE ACT ===== -->
+<section class="why">
+  <div class="wrap">
+    <span class="eyebrow">Why we act</span>
+    <h2>It&#39;s our country. <span class="hl">We see it through.</span></h2>
+    <p>Nobody from another country is coming to fix our streets. Problems get solved when we take the initiative: report it, post it, back it up. This does not mean citizens paying out of pocket. It means people standing together and keeping it visible until the responsible officials act. Once people unite for a cause, no one can stop them.</p>
+    <div class="lines">
+      <div class="line-card"><b>It&#39;s our country. Only we can see it through.</b><span>OUR RESPONSIBILITY</span></div>
+      <div class="line-card"><b>Report it. Post it. Don&#39;t wait for someone else.</b><span>TAKE THE INITIATIVE</span></div>
+      <div class="line-card"><b>Not our money. Our voice, until officials act.</b><span>KEEP IT VISIBLE</span></div>
+      <div class="line-card"><b>When people unite, no one can stop them.</b><span>UNITED WE FIX</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. HOW IT WORKS ===== -->
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow">How it works</span>
+    <h2>From a photo to <span class="hl">fixed.</span></h2>
+    <div class="steps">
+      <div class="card step"><small>01 / POST</small><h3>Report the problem</h3><p>Snap a photo, describe what is wrong and pin the place. Facts, not blame.</p><a href="feed.html"><span>Open the feed</span><span style="color:#FF6A00;display:flex"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M9 7 H17 V15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+      <div class="card step"><small>02 / VIEW</small><h3>Neighbours see it</h3><p>It appears in the community feed. People like, comment and add photos to back it up.</p><a href="feed.html"><span>Browse problems</span><span style="color:#FF6A00;display:flex"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M9 7 H17 V15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+      <div class="card step"><small>03 / ROUTE</small><h3>The right team is told</h3><p>OurCity sends it to the responsible department. You do not have to call anyone.</p><a href="feed.html"><span>See live status</span><span style="color:#FF6A00;display:flex"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M9 7 H17 V15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+      <div class="card step"><small>04 / TRACK</small><h3>Everyone watches it live</h3><p>Reported, under review, in progress, fixed. The whole public can see it.</p><a href="feed.html"><span>See a timeline</span><span style="color:#FF6A00;display:flex"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M9 7 H17 V15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. LIVE TRACKING LADDER ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="card panel">
+      <span class="eyebrow">Live tracking</span>
+      <h2 style="margin-top:12px;font-size:clamp(32px,4.5vw,42px)">Watch it move <span class="hl">until it is fixed.</span></h2>
+      <p class="sub">You post it once. Everyone can follow its status from Reported to Fixed, live. No calls to make, no one to chase.</p>
+      <div class="ladder">
+        <div class="rung"><div class="r1"><small>STEP 1</small><strong>Reported</strong><p>Your post goes live and the department is told.</p></div><i>&rsaquo;</i></div>
+        <div class="rung"><div class="r2"><small>STEP 2</small><strong>Under review</strong><p>The department has seen it and is checking.</p></div><i>&rsaquo;</i></div>
+        <div class="rung"><div class="r3"><small>STEP 3</small><strong>In progress</strong><p>Work has started on site.</p></div><i>&rsaquo;</i></div>
+        <div class="rung"><div class="r4"><small>STEP 4</small><strong>Resolved</strong><p>Neighbours confirm with a new photo. Report closes.</p></div></div>
+      </div>
+      <div class="note">Example of the public status tracker shown on every report.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. WHO IS RESPONSIBLE ===== -->
+<section class="section" id="who">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow">Who is responsible</span>
+      <h2>Not sure who is <span class="hl">responsible?</span> We do.</h2>
+      <p class="sub">Pick a category and your area. OurCity sends your report to the right department for you. You do not have to call anyone. That is not your job. Just post it and watch the status.</p>
+    </div>
+    <div class="card" style="padding:6px 24px">
+      <div style="padding:14px 0;border-bottom:1px solid #E4E4DF;font-size:11px;font-weight:700;letter-spacing:.08em;color:#555">SAMPLE DATA · WARD 12</div>
+      <div class="owner"><span class="chip">Potholes</span><div><b>Roads Department</b><small>Zone 3</small></div><a href="feed.html">Track</a></div>
+      <div class="owner"><span class="chip">Garbage</span><div><b>Solid Waste Management</b><small>Zone 3</small></div><a href="feed.html">Track</a></div>
+      <div class="owner"><span class="chip">Streetlights</span><div><b>Electrical Department</b><small>Ward 12</small></div><a href="feed.html">Track</a></div>
+      <div class="owner"><span class="chip">Water leak</span><div><b>Water Board</b><small>Division 5</small></div><a href="feed.html">Track</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8. COMMUNITY RULE ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="card panel two">
+      <div>
+        <span class="eyebrow">Community rule</span>
+        <h2 style="margin-top:12px;font-size:clamp(32px,4.5vw,42px)">We fix <span class="hl">problems,</span> not point fingers.</h2>
+        <p class="sub">Reports describe what is there, where it is and what needs to happen. We route to departments, never to individuals, so the focus stays on getting it fixed.</p>
+      </div>
+      <div style="display:grid;gap:14px">
+        <div class="say say--no">&ldquo;That guy dumps garbage everywhere.&rdquo;<small style="color:#B33A00">Not allowed. Names a person.</small></div>
+        <div class="say say--yes">&ldquo;Garbage pile at Lane 4. Needs pickup.&rdquo;<small style="color:#8A3A00">Good. Describes the problem and the place.</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 9. CTA ===== -->
+<section class="cta">
+  <svg class="deco" viewBox="0 0 1360 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <circle cx="110" cy="90" r="150" fill="none" stroke="#FF6A00" stroke-width="3" opacity="0.5"/>
+    <circle cx="1260" cy="430" r="190" fill="#FF6A00" opacity="0.16"/>
+    <path d="M1000 60 l16 -16 l16 16 l16 -16 l16 16 l16 -16 l16 16" fill="none" stroke="#FF6A00" stroke-width="4" opacity="0.6"/>
+  </svg>
+  <div class="wrap in">
+    <h2>Don&#39;t just<br><span class="hl">scroll past it.</span></h2>
+    <p>Your block, your street, your call. Post the first problem and get your neighbours in.</p>
+    <a class="btn btn--orange" href="feed.html#composer">Post your first report</a>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="logo">Our <em>City</em></div>
+    <p>An independent community platform. Not an official government site.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

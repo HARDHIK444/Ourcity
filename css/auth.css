@@ -1,0 +1,32 @@
+/* OurCity: sign-up and login pages (used together with style.css) */
+.auth-page{min-height:calc(100vh - 78px);display:flex;align-items:center;justify-content:center;padding:48px 24px}
+.auth-card{width:100%;max-width:440px;background:#fff;border:1px solid var(--line);border-top:5px solid var(--orange);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px 30px}
+.auth-card h1{font-size:34px;line-height:1.1;font-weight:800;letter-spacing:-0.02em}
+.auth-card p.sub{margin:10px 0 0;color:var(--muted);font-size:15px}
+.auth-card form{margin-top:22px;display:grid;gap:16px}
+.auth-card label{display:grid;gap:6px;font-size:13px;font-weight:700;color:var(--muted)}
+.auth-card input{width:100%;border:2px solid transparent;outline:0;background:var(--grey);border-radius:12px;padding:13px 14px;font:inherit;font-size:16px;color:var(--ink)}
+.auth-card input:focus{border-color:var(--orange)}
+.auth-card .btn{width:100%;padding:15px 24px;font-size:16px}
+.auth-card .btn:disabled{opacity:.6;cursor:wait}
+.auth-msg{min-height:1.2em;font-size:14px;font-weight:700;line-height:1.4}
+.auth-msg.is-bad{color:#B33A00}
+.auth-msg.is-ok{color:#1d6b2f}
+.auth-switch{margin-top:20px;font-size:14px;color:var(--muted);text-align:center}
+.auth-switch a{color:var(--ink);font-weight:800;border-bottom:2px solid var(--orange)}
+.auth__hi{padding:9px 12px;font-size:14px;font-weight:700;color:#fff;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* password strength (sign-up) */
+.pw{position:relative;display:block}
+.pw input{padding-right:70px}
+.pw__show{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;font-weight:800;font-size:13px;color:var(--ink);padding:8px;border-radius:8px}
+.pw__show:hover{background:var(--peach)}
+.meter{height:8px;background:#E4E4DF;border-radius:999px;overflow:hidden;margin-top:-6px}
+.meter i{display:block;height:100%;width:0;background:#B33A00;border-radius:999px;transition:width .25s,background .25s}
+.meter__label{font-size:13px;font-weight:700;color:var(--muted);margin-top:-8px}
+.rules{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--muted)}
+.rules li{position:relative;padding-left:24px}
+.rules li::before{content:"";position:absolute;left:0;top:2px;width:14px;height:14px;border-radius:50%;border:2px solid #C9C9C3;box-sizing:border-box}
+.rules li.ok{color:var(--ink)}
+.rules li.ok::before{background:var(--orange);border-color:var(--ink)}
+.pw__hint{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-top:-6px}

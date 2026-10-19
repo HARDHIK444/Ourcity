@@ -1,0 +1,31 @@
+/* OurCity: admin dashboard (admin.html) */
+.ad{padding-top:28px;padding-bottom:70px;min-height:60vh}
+.ad h1{margin:0 0 4px;font-size:26px}
+.ad__sub{margin:0 0 18px;color:var(--muted);font-size:14px}
+.ad__stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:16px}
+.ad__stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);cursor:pointer;text-align:left;font:inherit;color:var(--ink)}
+.ad__stat:hover,.ad__stat.is-on{box-shadow:0 0 0 3px var(--orange)}
+.ad__stat b{display:block;font-size:26px;line-height:1.1}
+.ad__stat small{font-size:12px;font-weight:700;color:var(--muted)}
+.ad__stat.warn b{color:#B33A00}
+.ad__bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:12px 14px;margin-bottom:14px}
+.ad__bar input{flex:1 1 220px;min-width:0;border:0;outline:0;background:var(--grey);border-radius:999px;padding:10px 16px;font:inherit;font-size:14px}
+.ad__bar select{border:0;outline:0;background:var(--grey);border-radius:999px;padding:10px 14px;font:inherit;font-size:13px;font-weight:600}
+.ad__count{font-size:13px;font-weight:700;color:var(--muted);margin-left:auto}
+.ad__wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.ad table{width:100%;border-collapse:collapse;font-size:14px}
+.ad th{text-align:left;padding:12px 14px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--grey);white-space:nowrap}
+.ad td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:middle}
+.ad td.t{min-width:220px;font-weight:700}
+.ad td.t small{display:block;font-weight:500;color:var(--muted);margin-top:2px}
+.ad .late{color:#B33A00;font-weight:800}
+.ad .go{display:inline-block;white-space:nowrap;background:var(--ink);color:var(--orange);font-weight:800;font-size:13px;padding:8px 14px;border-radius:999px;text-decoration:none}
+.ad .go:hover{background:var(--orange);color:var(--ink)}
+.ad .none{padding:40px;text-align:center;color:var(--muted)}
+.ad__deny{text-align:center;padding:50px 20px}
+.ad__deny h2{margin:0 0 6px}
+.ad__h2{margin:34px 0 12px;font-size:20px}
+.ad__btn{border:2px solid var(--ink);background:#fff;color:var(--ink);font:inherit;font-size:13px;font-weight:800;padding:6px 12px;border-radius:999px;cursor:pointer}
+.ad__btn:hover{background:var(--grey)}
+.ad__btn--red{border-color:#B33A00;background:#B33A00;color:#fff}
+.ad__btn--red:hover{background:#8f2e00}
