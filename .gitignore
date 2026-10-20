@@ -1,0 +1,9 @@
+# keep secrets and junk out of GitHub
+.env
+.env.*
+*.key
+*.pem
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
