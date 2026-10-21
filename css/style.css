@@ -584,3 +584,8 @@ a.auth__hi:hover{text-decoration:underline}
   .owner .chip{min-width:0;width:92px;padding:5px 6px;font-size:11px}
   .owner div{flex:none;min-width:0}
 }
+
+/* phones: the 6 orange dots sit behind the heading, so hide them there (desktop unchanged) */
+@media (max-width:760px){
+  .hero__deco g{display:none}
+}
