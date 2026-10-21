@@ -534,3 +534,26 @@ a.auth__hi:hover{text-decoration:underline}
   .bell__panel,#bellPanel{position:fixed;left:10px;right:10px;top:60px;width:auto;max-width:none}
   footer .wrap{padding-top:24px;padding-bottom:24px}
 }
+
+/* phones: compact city / state cards (desktop unchanged) */
+@media (max-width:600px){
+  .city{border-top-width:4px}
+  .city__main{padding:12px 14px;gap:10px 12px;flex-wrap:wrap;align-items:center}
+  .city__icon{width:48px;height:48px;border-radius:10px}
+  .city__icon svg{width:36px;height:36px}
+  .city__name strong{font-size:18px}
+  .city__name span{font-size:12px;margin-top:2px}
+  .city__rule{display:none}
+  .city__stat{flex:1 1 100%;width:auto;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:8px}
+  .city__stat small{font-size:9.5px;flex:1 1 auto}
+  .city__stat b{margin-top:0;font-size:20px}
+  .city__sub{margin-top:0;font-size:11px}
+  .city__go svg{width:18px;height:18px}
+  .city__links a{padding:10px 4px;font-size:12px}
+  .cities{gap:10px}
+}
+@media (max-width:600px){
+  .city{position:relative}
+  .city__go{position:absolute;top:14px;right:14px}
+  .city__name{padding-right:26px}
+}
