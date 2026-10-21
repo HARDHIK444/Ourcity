@@ -8,6 +8,7 @@
   var esc = OC.esc;
   var posts = [];
   var user = null;
+  var onlyResolved = false;   // set by ?resolved=1 (from the city cards)
   var myPos = null;           // {lat,lng} after "Near me"
   var openComments = {};
   var isAdm = false;          // true for admins (they can remove any post or comment)
@@ -100,6 +101,7 @@
     var list = posts.filter(function (p) {
       p._km = null;
       if (cat && p.category !== cat) return false;
+      if (onlyResolved && p.status !== 'resolved') return false;
       if (q && (p.location + ' ' + p.title + ' ' + p.description + ' ' + p.category).toLowerCase().indexOf(q) === -1) return false;
       if (myPos) {
         if (p.lat == null || p.lng == null) return false;
@@ -114,9 +116,9 @@
 
   function renderPosts() {
     var list = visiblePosts();
-    var filtering = el.q.value.trim() || el.fcat.value || myPos;
+    var filtering = el.q.value.trim() || el.fcat.value || myPos || onlyResolved;
     el.info.hidden = !filtering;
-    if (filtering) el.info.textContent = list.length + (list.length === 1 ? ' report' : ' reports') + (myPos ? ' within 10 km of you' : ' found');
+    if (filtering) el.info.textContent = list.length + (list.length === 1 ? ' report' : ' reports') + (myPos ? ' within 10 km of you' : (onlyResolved ? ' resolved' : ' found'));
     el.posts.innerHTML = list.length ? list.map(postHTML).join('')
       : '<div class="card noposts">' + (filtering ? 'No reports match your search.' : 'No posts yet. Tap the camera above to share the first one.') + '</div>';
   }
@@ -189,6 +191,13 @@
     OCSocial.addComment(post, text).then(function () { return refreshComments(post); })
       .catch(function (err) { input.disabled = false; OC.toast('Could not comment: ' + err.message); });
   });
+
+  // arriving from a city card on the Home page: feed.html?q=Mangaluru&resolved=1
+  (function () {
+    var sp = new URLSearchParams(location.search);
+    if (sp.get('q')) el.q.value = sp.get('q');
+    if (sp.get('resolved') === '1') onlyResolved = true;
+  })();
 
   // coming back from the Create page
   if (/[?&]posted=1/.test(location.search)) {

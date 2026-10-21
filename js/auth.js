@@ -56,7 +56,7 @@
     w.innerHTML = '<button type="button" class="bell__btn" id="bellBtn" aria-label="Notifications" aria-expanded="false">' +
       '<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17 V11 A6 6 0 0 1 18 11 V17 L20 19 H4 Z M10 21 H14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/></svg>' +
       '<span class="bell__n" id="bellN" hidden></span></button><div class="bell__panel" id="bellPanel" hidden></div>';
-    box.parentNode.insertBefore(w, box);
+    box.insertAdjacentElement('afterend', w);
     var items = [];
     function paint() {
       var unread = items.filter(function (n) { return !n.read; }).length;

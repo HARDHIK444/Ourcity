@@ -16,24 +16,64 @@
     charminar: 'M10 58 V30 H54 V58 M4 58 H60 M10 30 V12 M54 30 V12 M18 30 V18 M46 30 V18 M24 58 V40 A8 8 0 0 1 40 40 V58 M6 12 H14 M50 12 H58 M10 12 V8 M54 12 V8'
   };
 
+  // Each place: name words to look for in a post's location text, and map centres
+  // (a post with a map pin inside the radius, in km, also counts). n = real number from the database.
   var DATA = {
     cities: [
-      { name: 'Mangaluru', landmark: 'Lighthouse Hill', n: 4218, icon: 'lighthouse', hot: true },
-      { name: 'Delhi', landmark: 'India Gate', n: 48312, icon: 'arch' },
-      { name: 'Mumbai', landmark: 'Gateway of India', n: 61874, icon: 'gateway' },
-      { name: 'Bengaluru', landmark: 'Vidhana Soudha', n: 52046, icon: 'dome' },
-      { name: 'Kolkata', landmark: 'Howrah Bridge', n: 29517, icon: 'bridge' },
-      { name: 'Hyderabad', landmark: 'Charminar', n: 33902, icon: 'charminar' }
+      { name: 'Mangaluru', landmark: 'Lighthouse Hill', icon: 'lighthouse', hot: true, aliases: ['mangaluru', 'mangalore'], centres: [{ lat: 12.9141, lng: 74.8560, r: 40 }] },
+      { name: 'Delhi', landmark: 'India Gate', icon: 'arch', aliases: ['delhi'], centres: [{ lat: 28.6139, lng: 77.2090, r: 50 }] },
+      { name: 'Mumbai', landmark: 'Gateway of India', icon: 'gateway', aliases: ['mumbai', 'bombay'], centres: [{ lat: 19.0760, lng: 72.8777, r: 45 }] },
+      { name: 'Bengaluru', landmark: 'Vidhana Soudha', icon: 'dome', aliases: ['bengaluru', 'bangalore'], centres: [{ lat: 12.9716, lng: 77.5946, r: 40 }] },
+      { name: 'Kolkata', landmark: 'Howrah Bridge', icon: 'bridge', aliases: ['kolkata', 'calcutta', 'howrah'], centres: [{ lat: 22.5726, lng: 88.3639, r: 40 }] },
+      { name: 'Hyderabad', landmark: 'Charminar', icon: 'charminar', aliases: ['hyderabad', 'secunderabad'], centres: [{ lat: 17.3850, lng: 78.4867, r: 40 }] }
     ],
     states: [
-      { name: 'Karnataka', landmark: 'Vidhana Soudha, Bengaluru', n: 98420, icon: 'dome', hot: true },
-      { name: 'Maharashtra', landmark: 'Gateway of India, Mumbai', n: 112305, icon: 'gateway' },
-      { name: 'Delhi (NCT)', landmark: 'India Gate', n: 48312, icon: 'arch' },
-      { name: 'West Bengal', landmark: 'Howrah Bridge, Kolkata', n: 63118, icon: 'bridge' },
-      { name: 'Telangana', landmark: 'Charminar, Hyderabad', n: 71664, icon: 'charminar' },
-      { name: 'Kerala', landmark: 'Kovalam Lighthouse', n: 41207, icon: 'lighthouse' }
+      { name: 'Karnataka', landmark: 'Vidhana Soudha, Bengaluru', icon: 'dome', hot: true,
+        aliases: ['karnataka', 'mangaluru', 'mangalore', 'bengaluru', 'bangalore', 'mysuru', 'mysore', 'hubballi', 'hubli'],
+        centres: [{ lat: 12.9141, lng: 74.8560, r: 40 }, { lat: 12.9716, lng: 77.5946, r: 40 }, { lat: 12.2958, lng: 76.6394, r: 30 }, { lat: 15.3647, lng: 75.1240, r: 30 }] },
+      { name: 'Maharashtra', landmark: 'Gateway of India, Mumbai', icon: 'gateway',
+        aliases: ['maharashtra', 'mumbai', 'bombay', 'pune', 'nagpur'],
+        centres: [{ lat: 19.0760, lng: 72.8777, r: 45 }, { lat: 18.5204, lng: 73.8567, r: 35 }, { lat: 21.1458, lng: 79.0882, r: 35 }] },
+      { name: 'Delhi (NCT)', landmark: 'India Gate', icon: 'arch', query: 'Delhi', aliases: ['delhi'], centres: [{ lat: 28.6139, lng: 77.2090, r: 50 }] },
+      { name: 'West Bengal', landmark: 'Howrah Bridge, Kolkata', icon: 'bridge',
+        aliases: ['west bengal', 'kolkata', 'calcutta', 'howrah'], centres: [{ lat: 22.5726, lng: 88.3639, r: 40 }] },
+      { name: 'Telangana', landmark: 'Charminar, Hyderabad', icon: 'charminar',
+        aliases: ['telangana', 'hyderabad', 'secunderabad'], centres: [{ lat: 17.3850, lng: 78.4867, r: 40 }] },
+      { name: 'Kerala', landmark: 'Kovalam Lighthouse', icon: 'lighthouse',
+        aliases: ['kerala', 'kochi', 'cochin', 'thiruvananthapuram', 'trivandrum', 'kozhikode', 'calicut'],
+        centres: [{ lat: 9.9312, lng: 76.2673, r: 35 }, { lat: 8.5241, lng: 76.9366, r: 35 }, { lat: 11.2588, lng: 75.7804, r: 30 }] }
     ]
   };
+  var loaded = false;   // true once the real numbers have arrived
+
+  function km(a, b) {
+    var R = 6371, rad = Math.PI / 180, dLat = (b.lat - a.lat) * rad, dLng = (b.lng - a.lng) * rad;
+    var x = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 2 * 6371 * Math.asin(Math.sqrt(x));
+  }
+  function inPlace(post, place) {
+    var text = String(post.location || '').toLowerCase();
+    if (place.aliases.some(function (w) { return text.indexOf(w) !== -1; })) return true;
+    if (post.lat == null || post.lng == null) return false;
+    return place.centres.some(function (c) { return km({ lat: post.lat, lng: post.lng }, c) <= c.r; });
+  }
+  // count every saved report for every city and state
+  function countPlaces(posts) {
+    ['cities', 'states'].forEach(function (k) {
+      DATA[k].forEach(function (pl) {
+        var mine = posts.filter(function (p) { return inPlace(p, pl); });
+        pl.n = mine.length;
+        pl.done = mine.filter(function (p) { return p.status === 'resolved'; }).length;
+      });
+    });
+  }
+  function loadCounts() {
+    if (!window.sb) { loaded = true; renderPlaces(); return; }
+    sb.from('posts').select('id,location,lat,lng,status').limit(5000).then(function (r) {
+      if (!r.error) { countPlaces(r.data || []); }
+      loaded = true; renderPlaces();
+    });
+  }
 
   var mode = 'cities', q = '';
   var grid = document.getElementById('cityGrid');
@@ -50,10 +90,11 @@
           '<div class="city__icon"><svg viewBox="0 0 64 64" role="img" aria-label="' + esc(c.landmark) + '"><path d="' + ICON[c.icon] + '"/></svg></div>' +
           '<div class="city__name"><strong>' + esc(c.name) + '</strong><span>' + esc(c.landmark) + '</span></div>' +
           '<div class="city__rule"></div>' +
-          '<div class="city__stat"><small>TOTAL CIVIC ISSUES REPORTED</small><b>' + c.n.toLocaleString('en-IN') + '</b></div>' +
-          '<a class="city__go" href="feed.html" aria-label="Open ' + esc(c.name) + '">' + arrow + '</a>' +
+          '<div class="city__stat"><small>TOTAL CIVIC ISSUES REPORTED</small><b>' + (loaded ? (c.n || 0).toLocaleString('en-IN') : '...') + '</b>' +
+            (loaded ? '<span class="city__sub">' + (c.done || 0).toLocaleString('en-IN') + ' resolved</span>' : '') + '</div>' +
+          '<a class="city__go" href="feed.html?q=' + encodeURIComponent(c.query || c.name) + '" aria-label="Open ' + esc(c.name) + '">' + arrow + '</a>' +
         '</div>' +
-        '<div class="city__links"><a href="feed.html">Issues</a><a href="#who">Authority</a><a href="feed.html">Resolution</a></div>' +
+        '<div class="city__links"><a href="feed.html?q=' + encodeURIComponent(c.query || c.name) + '">Issues</a><a href="#who">Authority</a><a href="feed.html?q=' + encodeURIComponent(c.query || c.name) + '&resolved=1">Resolution</a></div>' +
       '</article>';
     }).join('');
   }
@@ -93,5 +134,7 @@
   }
 
   renderPlaces();
+  loadCounts();
+  setInterval(loadCounts, 30000);   // the numbers refresh by themselves every 30 seconds
   renderLatest();
 })();
