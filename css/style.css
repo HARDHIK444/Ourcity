@@ -498,3 +498,39 @@ a.auth__hi:hover{text-decoration:underline}
 .bell__none{margin:0;padding:18px 16px;font-size:13.5px;color:var(--muted)}
 .bell__n[hidden]{display:none}
 .city__sub{display:block;margin-top:2px;font-size:12px;font-weight:700;color:var(--muted)}
+
+/* ---------- phones: smaller type, tighter spacing, compact header ---------- */
+@media (max-width:600px){
+  html{-webkit-text-size-adjust:100%}
+  body{font-size:15px}
+  .wrap{padding:0 14px}
+  .site-header .wrap{gap:8px 10px;padding-top:10px;padding-bottom:10px}
+  .logo{font-size:22px;gap:6px}
+  .logo svg{width:22px;height:auto}
+  .nav{width:100%;gap:6px 14px;font-size:13px;flex-wrap:wrap;align-items:center}
+  .nav .auth,.nav #bellWrap{margin-left:0}
+  .nav #authBox{margin-left:auto}
+  .nav a.link{white-space:nowrap;padding:4px 0}
+  .auth a{padding:7px 11px;font-size:13px}
+  .auth{border-radius:12px}
+  .hero .wrap{gap:28px;padding-top:26px;padding-bottom:50px}
+  .hero h1{margin-top:14px;font-size:clamp(38px,12vw,52px)}
+  .hero p.lead{margin-top:16px;font-size:16px}
+  .eyebrow{font-size:11px}
+  .section{padding:52px 0 0}
+  .section h2{font-size:clamp(26px,8vw,34px)}
+  .section .sub{font-size:15px}
+  .why h2{font-size:clamp(28px,8.5vw,38px)}
+  .cta h2{font-size:clamp(32px,10vw,44px)}
+  .cities{grid-template-columns:1fr;gap:14px}
+  .city__name strong{font-size:22px}
+  .city__stat b{font-size:24px}
+  .panel{padding:18px}
+  .btn{padding:12px 20px;font-size:14px}
+  .searchbar{padding:6px 6px 6px 14px}
+  .searchbar input{font-size:14px;min-width:0}
+  .searchbar .btn{padding:11px 14px;font-size:13px;white-space:nowrap}
+  .auth-card h1{font-size:26px}
+  .bell__panel,#bellPanel{position:fixed;left:10px;right:10px;top:60px;width:auto;max-width:none}
+  footer .wrap{padding-top:24px;padding-bottom:24px}
+}
